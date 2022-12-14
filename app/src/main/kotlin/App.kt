@@ -1,4 +1,4 @@
-package edu.austral.ingsis.starships
+
 
 import edu.austral.ingsis.starships.ui.*
 import edu.austral.ingsis.starships.ui.ElementColliderType.*
