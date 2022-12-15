@@ -14,7 +14,8 @@ import PLAYER2_RIGHT
 import PLAYER2_SHOOT
 import PLAYER2_STOP
 import PLAYER_PAUSE
-import STARSHIP
+import STARSHIP1
+import STARSHIP3
 import WIDTH
 import edu.austral.ingsis.starships.ui.ImageRef
 import model.*
@@ -32,7 +33,7 @@ fun classicSolo(): Game {
         LIFE,
         CENTER,
         Vector(0.0, 0.0),
-        STARSHIP,
+        STARSHIP1,
         gun
     )
     val movables = listOf<Movable>(starship)
@@ -60,7 +61,7 @@ fun classicDuo() : Game {
         LIFE,
         Position(WIDTH / 4, HEIGHT / 2),
         Vector(0.0, 0.0),
-        STARSHIP,
+        STARSHIP1,
         gun1
     )
     val starship2 = Starship(
@@ -68,7 +69,7 @@ fun classicDuo() : Game {
         LIFE,
         Position(WIDTH * 3 / 4, HEIGHT / 2),
         Vector(0.0, 0.0),
-        STARSHIP,
+        STARSHIP3,
         gun2
     )
     val movables = listOf<Movable>(starship1, starship2)
@@ -108,8 +109,8 @@ fun createAsteroid(movables: List<Movable>, id: String) : List<Movable> {
 
 private fun pickAsteroidSkin() : String{
     return when((0..2).random()){
-        0 -> "bacteria1"
-        else -> "bacteria2"
+        0 -> "asteroid1"
+        else -> "asteroid2"
     }
 }
 

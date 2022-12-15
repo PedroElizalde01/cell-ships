@@ -39,13 +39,13 @@ class CellShips() : Application() {
         var lives2 = Label(LIFE.toString())
         var time = Label("0.0")
 
-        lives1.style = "-fx-font.family: 'Rubik Microbe', monospace; -fx-font-size: 100"
-        lives2.style = "-fx-font.family: 'Rubik Microbe', monospace; -fx-font-size: 100"
-        time.style   = "-fx-font.family: 'Rubik Microbe', monospace; -fx-font-size: 100"
+        lives1.style = "-fx-font.family: 'Rock Salt', monospace; -fx-font-size: 100"
+        lives2.style = "-fx-font.family: 'Rock Salt', monospace; -fx-font-size: 100"
+        time.style   = "-fx-font.family: 'Rock Salt', monospace; -fx-font-size: 100"
 
-        lives1.textFill = Color.color(0.9,0.9,0.9)
-        lives2.textFill = Color.color(0.9,0.9,0.9)
-        time.textFill   = Color.color(0.9,0.9,0.9)
+        lives1.textFill = Color.BLACK
+        lives2.textFill = Color.BLACK
+        time.textFill   = Color.BLACK
 
         val div1 = HBox(50.0)
         val div2 = HBox(50.0)
@@ -70,7 +70,7 @@ class CellShips() : Application() {
         val scene = Scene(layout)
         tracker.scene = scene
         scene.stylesheets.add(this::class.java.classLoader.getResource("menu.css")?.toString())
-        scene.stylesheets.add("https://fonts.googleapis.com/css2?family=Rubik+Microbe&display=swap")
+        scene.stylesheets.add("https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap")
 
         primaryStage.scene = scene
         primaryStage.height = HEIGHT
@@ -80,22 +80,22 @@ class CellShips() : Application() {
         layout.alignment = Pos.CENTER
         layout.id = "pane"
 
-        val name = Label("CellShips")
-        name.textFill = Color.WHITE
-        name.style = "-fx-font-family: 'Rubik Microbe', monospace; -fx-font-size: 150"
+        val name = Label("Doodle-Ships")
+        name.textFill = Color.BLACK
+        name.style = "-fx-font-family: 'Rock Salt', monospace; -fx-font-size: 150"
 
         val options = HBox(100.0)
         options.alignment = Pos.CENTER
 
         val onePlayer = Label("One Player")
-        onePlayer.textFill = Color.WHITE
-        onePlayer.style = "-fx-font-family: 'Rubik Microbe', monospace; -fx-font-size: 80"
+        onePlayer.textFill = Color.BLACK
+        onePlayer.style = "-fx-font-family: 'Rock Salt', monospace; -fx-font-size: 80"
         onePlayer.setOnMouseEntered {
-            onePlayer.textFill = Color.BLUE
+            onePlayer.textFill = Color.RED
             onePlayer.cursor = Cursor.HAND
         }
         onePlayer.setOnMouseExited {
-            onePlayer.textFill = Color.WHITE
+            onePlayer.textFill = Color.BLACK
         }
         onePlayer.setOnMouseClicked {
             scene.root = pane
@@ -103,14 +103,14 @@ class CellShips() : Application() {
         }
 
         val twoPlayer = Label("Two Player")
-        twoPlayer.textFill = Color.WHITE
-        twoPlayer.style = "-fx-font-family: 'Rubik Microbe', monospace; -fx-font-size: 80"
+        twoPlayer.textFill = Color.BLACK
+        twoPlayer.style = "-fx-font-family: 'Rock Salt', monospace; -fx-font-size: 80"
         twoPlayer.setOnMouseEntered {
-            twoPlayer.textFill = Color.BLUE
+            twoPlayer.textFill = Color.RED
             twoPlayer.cursor = Cursor.HAND
         }
         twoPlayer.setOnMouseExited {
-            twoPlayer.textFill = Color.WHITE
+            twoPlayer.textFill = Color.BLACK
         }
         twoPlayer.setOnMouseClicked {
             scene.root = pane
@@ -146,9 +146,9 @@ class CellShips() : Application() {
                         minutesDisplayed += 1
                     }
                     time= Label(minutesDisplayed.toString()+":" + if(secondsPassed.toString().length == 1) "0" + secondsPassed.toString() else secondsPassed.toString())
-                    lives1.style = "-fx-font-family: 'Rubik Microbe', monospace; -fx-font-size: 100"
-                    lives2.style = "-fx-font-family: 'Rubik Microbe', monospace; -fx-font-size: 100"
-                    time.style   = "-fx-font-family: 'Rubik Microbe', monospace; -fx-font-size: 100"
+                    lives1.style = "-fx-font-family: 'Rock Salt', monospace; -fx-font-size: 100"
+                    lives2.style = "-fx-font-family: 'Rock Salt', monospace; -fx-font-size: 100"
+                    time.style   = "-fx-font-family: 'Rock Salt', monospace; -fx-font-size: 100"
                     lives1.textFill = Color.color(0.9,0.9,0.9)
                     lives2.textFill = Color.color(0.9,0.9,0.9)
                     time.textFill = Color.color(0.9,0.9,0.9)

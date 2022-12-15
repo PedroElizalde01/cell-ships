@@ -44,7 +44,7 @@ data class Starship(
         return when (collider){
             is Asteroid -> copy(life = life - COLLIDE_DAMAGE, vector = Vector(if(vector.speed > 0) {-1.0} else {1.0}, vector.rotation))
             is Starship -> copy(life = life - COLLIDE_DAMAGE)
-            is Bullet   -> copy(life = life - collider.damage)
+            is Bullet   -> if(collider.shipId != id) copy(life = life - collider.damage) else this
             else -> this
         }
     }

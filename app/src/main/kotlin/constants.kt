@@ -6,15 +6,20 @@ val HEIGHT = 1000.0
 val WIDTH = 1500.0
 
 val COLLIDE_DAMAGE = 10
-val BULLET_SPEED = 10.0
+val BULLET_SPEED = 8.0
 val BULLET_DAMAGE = 20
 val LIFE = 200
 val SPAWN_PROBS = 1000
 
 val CENTER = Position(WIDTH / 2, HEIGHT / 2)
 
-val LASER_BEAM = ImageRef("laser", 13.0, 7.0)
-val STARSHIP = ImageRef("cell-ship", 60.0, 40.0)
+val LASER = ImageRef("laser", 15.0, 5.0)
+val STARSHIP1 = ImageRef("starship1", 70.0, 70.0)
+val STARSHIP2 = ImageRef("starship2", 70.0, 70.0)
+val STARSHIP3 = ImageRef("starship3", 70.0, 70.0)
+val STARSHIP4 = ImageRef("starship4", 70.0, 70.0)
+val STARSHIP5 = ImageRef("starship5", 70.0, 140.0)
+val STARSHIP6 = ImageRef("starship6", 70.0, 70.0)
 
 val PLAYER_PAUSE = KeyCode.P
 
