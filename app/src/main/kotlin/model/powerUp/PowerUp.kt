@@ -1,5 +1,6 @@
 package model.powerUp
 
+import edu.austral.ingsis.starships.ui.ImageRef
 import model.maths.Position
 import model.maths.Vector
 import model.mover.Movable
@@ -9,7 +10,8 @@ data class PowerUp (
     val id : String,
     val pos : Position,
     val vector : Vector,
-    val type : PowerUpType,
+    val skin : ImageRef,
+    val type : PowerUpType
         ) : Movable {
     override fun id(): String = id
 
@@ -21,12 +23,7 @@ data class PowerUp (
 
     override fun rotation(): Double = vector.rotation
 
-    override fun collision(collider: Movable): Movable {
-        return when(collider) {
-            is Starship -> this
-            else -> this
-        }
-    }
+    override fun collision(collider: Movable): Movable = this
 
     override fun life(): Int = 0
 
@@ -34,6 +31,6 @@ data class PowerUp (
 
 enum class PowerUpType {
     LIFE,
+    SINGLE_SHOOT,
     DOUBLE_SHOOT,
-    TRIPLE_SHOOT,
 }

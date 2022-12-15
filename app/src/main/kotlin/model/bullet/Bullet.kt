@@ -1,6 +1,7 @@
 package model.bullet
 
 import edu.austral.ingsis.starships.ui.ImageRef
+import model.asteroid.Asteroid
 import model.maths.Position
 import model.maths.Vector
 import model.mover.Movable
@@ -23,7 +24,12 @@ data class Bullet(
 
     override fun rotation(): Double = vector.rotation
 
-    override fun collision(collider: Movable): Movable = this
+    override fun collision(collider: Movable): Movable {
+        return when (collider) {
+            is Asteroid -> copy()
+            else -> this
+        }
+    }
 
     override fun life(): Int = 0
 

@@ -13,10 +13,10 @@ import kotlin.math.sin
 class DoubleGun : Gun {
 
     override fun shoot(starship: Starship): List<Bullet> {
-        val xPos1 = starship.pos.x + (40 * sin(Math.toRadians(starship.vector.rotation - 10)))
-        val yPos1 = starship.pos.y + (40 * -cos(Math.toRadians(starship.vector.rotation - 10)))
-        val xPos2 = starship.pos.x + (40 * sin(Math.toRadians(starship.vector.rotation + 10)))
-        val yPos2 = starship.pos.y + (40 * -cos(Math.toRadians(starship.vector.rotation + 10)))
+        val xPos1 = starship.pos.x + (70 * sin(Math.toRadians(starship.vector.rotation - 10)))
+        val yPos1 = starship.pos.y + (70 * -cos(Math.toRadians(starship.vector.rotation - 10)))
+        val xPos2 = starship.pos.x + (70 * sin(Math.toRadians(starship.vector.rotation + 10)))
+        val yPos2 = starship.pos.y + (70 * -cos(Math.toRadians(starship.vector.rotation + 10)))
         return listOf(
             Bullet(
                 "b"+ (0..1000).random(),

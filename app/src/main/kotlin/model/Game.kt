@@ -4,7 +4,7 @@ import javafx.scene.input.KeyCode
 import model.mover.Movable
 
 data class Game (
-    val gameState: States,
+    val state: States,
     val movables :List<Movable>,
     val movementKeyMap : Map<KeyCode,PlayerAction>,
     val releaseKeyMap : Map<KeyCode,ReleaseAction>)

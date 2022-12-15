@@ -4,6 +4,7 @@ import edu.austral.ingsis.starships.ui.ElementColliderType
 import edu.austral.ingsis.starships.ui.ElementModel
 import edu.austral.ingsis.starships.ui.KeyReleased
 import factory.createAsteroid
+import factory.createPowerUp
 import javafx.scene.input.KeyCode
 import javafx.scene.control.Label
 import model.Action
@@ -13,6 +14,7 @@ import model.States
 import model.asteroid.Asteroid
 import model.bullet.Bullet
 import model.mover.Movable
+import model.powerUp.PowerUp
 import model.starship.Starship
 
 class ModelToGUI(val game: Game,private val spawnProbs:Int) {
@@ -55,6 +57,19 @@ class ModelToGUI(val game: Game,private val spawnProbs:Int) {
         )
     }
 
+    private fun adaptPowerUp(power: PowerUp):ElementModel{
+        return ElementModel(
+            power.id(),
+            power.pos.x,
+            power.pos.y,
+            power.skin.height,
+            power.skin.width,
+            power.vector.rotation,
+            ElementColliderType.Elliptical,
+            power.skin
+        )
+    }
+
     private fun accelerate(id:String):ModelToGUI{
         val starship = (game.movables.find{it.id() == id} as Starship)
         val newShips = game.movables.filter { it.id() != id }
@@ -68,7 +83,7 @@ class ModelToGUI(val game: Game,private val spawnProbs:Int) {
     }
 
     private fun rotateLeft(id: String, time: Double) : ModelToGUI{
-        if(game.gameState == States.RUNNING){
+        if(game.state == States.RUNNING){
             val starship = (game.movables.find { it.id() == id} as Starship)
             val newShips = game.movables.filter {it.id() != id}
             return ModelToGUI(game.copy(movables = newShips.plus(starship.rotateLeft(time))),spawnProbs)
@@ -77,7 +92,7 @@ class ModelToGUI(val game: Game,private val spawnProbs:Int) {
     }
 
     private fun rotateRight(id: String, time: Double) : ModelToGUI{
-        if(game.gameState == States.RUNNING){
+        if(game.state == States.RUNNING){
             val starship = (game.movables.find { it.id() == id} as Starship)
             val newShips = game.movables.filter {it.id() != id}
             return ModelToGUI(game.copy(movables = newShips.plus(starship.rotateRight(time))),spawnProbs)
@@ -86,7 +101,7 @@ class ModelToGUI(val game: Game,private val spawnProbs:Int) {
     }
 
     private fun shoot(id: String): ModelToGUI{
-        if(game.gameState == States.RUNNING){
+        if(game.state == States.RUNNING){
             val starship = (game.movables.find {it.id() == id} as Starship)
             return ModelToGUI(game.copy(movables = game.movables + starship.shoot()),spawnProbs)
         }
@@ -135,18 +150,22 @@ class ModelToGUI(val game: Game,private val spawnProbs:Int) {
     }
 
     private fun togglePause() : ModelToGUI {
-        if(game.gameState == States.RUNNING) return ModelToGUI(game.copy(gameState = States.PAUSED),spawnProbs)
-        return ModelToGUI(game.copy(gameState = States.RUNNING),spawnProbs)
+        if(game.state == States.RUNNING) return ModelToGUI(game.copy(state = States.PAUSED),spawnProbs)
+        return ModelToGUI(game.copy(state = States.RUNNING),spawnProbs)
     }
 
     fun keyFramePassed(time : Double) : ModelToGUI{
-        if(game.gameState === States.RUNNING){
-            val spawnAsteroid = (0..spawnProbs).random()
-            if(spawnAsteroid == 1) {
-                val newMovables = createAsteroid(game.movables, "a" + (0..1000).random())
-                return ModelToGUI(game.copy(movables = newMovables.map {it.move(time)}), spawnProbs = if (spawnProbs > 200) { spawnProbs - 3 } else { spawnProbs })
+        if(game.state === States.RUNNING){
+            val spawnObject = (0..spawnProbs).random()
+            if(spawnObject <= 150){ // 0,15 % chance to spawn an powerUp
+                val newMovables = createPowerUp(game.movables, "p" + (0..1000).random())
+                return ModelToGUI(game.copy(movables = newMovables.map {it.move(time)}),spawnProbs)
             }
-            return ModelToGUI(game.copy(movables = game.movables.map { it.move(time) }), spawnProbs = if (spawnProbs > 200) { spawnProbs - 3 } else { spawnProbs })
+            if(spawnObject <= 450) { // 0,45 % chance to spawn an asteroid
+                val newMovables = createAsteroid(game.movables, "a" + (0..1000).random())
+                return ModelToGUI(game.copy(movables = newMovables.map {it.move(time)}),spawnProbs)
+            }
+            return ModelToGUI(game.copy(movables = game.movables.map { it.move(time) }), spawnProbs)
         }
         return this
     }
@@ -170,7 +189,8 @@ class ModelToGUI(val game: Game,private val spawnProbs:Int) {
         return when (movable) {
             is Starship -> adaptStarship(movable)
             is Asteroid -> adaptAsteroid(movable)
-            is Bullet -> adaptBullet(movable)
+            is Bullet   -> adaptBullet(movable)
+            is PowerUp  -> adaptPowerUp(movable)
             else -> adaptAsteroid(movable as Asteroid)
         }
     }
@@ -178,6 +198,13 @@ class ModelToGUI(val game: Game,private val spawnProbs:Int) {
     fun updateLives(id : String) : Label {
         return when(val element = game.movables.find {it.id() === id}){
             is Starship -> Label("Life: " + element.life())
+            else -> { Label("") }
+        }
+    }
+
+    fun updateScore(id : String) : Label {
+        return when(val element = game.movables.find {it.id() === id}){
+            is Starship -> Label("Score: " + element.score())
             else -> { Label("") }
         }
     }

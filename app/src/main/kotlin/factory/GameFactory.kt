@@ -24,6 +24,8 @@ import model.gun.ClassicGun
 import model.maths.Position
 import model.maths.Vector
 import model.mover.Movable
+import model.powerUp.PowerUp
+import model.powerUp.PowerUpType
 import model.starship.Starship
 
 fun classicSolo(): Game {
@@ -31,6 +33,7 @@ fun classicSolo(): Game {
     val starship = Starship(
         "player1",
         LIFE,
+        0,
         CENTER,
         Vector(0.0, 0.0),
         STARSHIP1,
@@ -59,7 +62,8 @@ fun classicDuo() : Game {
     val starship1 = Starship(
         "player1",
         LIFE,
-        Position(WIDTH / 4, HEIGHT / 2),
+        0,
+        Position(WIDTH * 3 / 4, HEIGHT / 2),
         Vector(0.0, 0.0),
         STARSHIP1,
         gun1
@@ -67,7 +71,8 @@ fun classicDuo() : Game {
     val starship2 = Starship(
         "player2",
         LIFE,
-        Position(WIDTH * 3 / 4, HEIGHT / 2),
+        0,
+        Position(WIDTH / 4, HEIGHT / 2),
         Vector(0.0, 0.0),
         STARSHIP3,
         gun2
@@ -95,7 +100,7 @@ fun classicDuo() : Game {
 }
 
 fun createAsteroid(movables: List<Movable>, id: String) : List<Movable> {
-    val life = (40..200).random()
+    val life = (60..200).random()
     val asteroid = Asteroid(
         id,
         life,
@@ -105,6 +110,37 @@ fun createAsteroid(movables: List<Movable>, id: String) : List<Movable> {
         ImageRef(pickAsteroidSkin(),life.toDouble(),life.toDouble())
     )
     return movables.plus(asteroid)
+}
+
+fun createPowerUp(movables: List<Movable>, id: String) : List<Movable> {
+    val probs = (0..100).random()
+    if(probs > 90) {
+        val powerUp = PowerUp(
+            id,
+            spawnInBorder(),
+            Vector((1..3).random().toDouble(), (0..360).random().toDouble()),
+            ImageRef("doubleGun",60.0,60.0),
+            PowerUpType.DOUBLE_SHOOT
+        )
+        return movables.plus(powerUp)
+    } else if (probs > 70){
+        val powerUp = PowerUp(
+            id,
+            spawnInBorder(),
+            Vector((1..3).random().toDouble(), (0..360).random().toDouble()),
+            ImageRef("singleGun",60.0,60.0),
+            PowerUpType.SINGLE_SHOOT
+        )
+        return movables.plus(powerUp)
+    }
+    val powerUp = PowerUp(
+        id,
+        spawnInBorder(),
+        Vector((1..3).random().toDouble(), (0..360).random().toDouble()),
+        ImageRef("health",60.0,60.0),
+        PowerUpType.LIFE)
+
+    return movables.plus(powerUp)
 }
 
 private fun pickAsteroidSkin() : String{

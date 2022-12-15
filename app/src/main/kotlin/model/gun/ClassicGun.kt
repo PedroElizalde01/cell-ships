@@ -13,8 +13,8 @@ import kotlin.math.cos
 class ClassicGun : Gun {
 
     override fun shoot(starship: Starship): List<Bullet> {
-        val xPos = starship.pos.x + (50 * sin(Math.toRadians(starship.vector.rotation)))
-        val yPos = starship.pos.y + (50 * -cos(Math.toRadians(starship.vector.rotation)))
+        val xPos = starship.pos.x + (70 * sin(Math.toRadians(starship.vector.rotation)))
+        val yPos = starship.pos.y + (70 * -cos(Math.toRadians(starship.vector.rotation)))
         return listOf(Bullet(
             "b"+ (0..1000).random(),
             BULLET_DAMAGE,
