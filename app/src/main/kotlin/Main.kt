@@ -50,15 +50,7 @@ class DoodleShip() : Application() {
         val div1 = HBox(300.0)
         val div2 = HBox(50.0)
 
-        div1.alignment = Pos.TOP_CENTER
-        div2.alignment = Pos.BOTTOM_CENTER
-
-        div1.children.addAll(life1, life2)
-        div2.children.addAll(time)
-
-        div1.padding = Insets(10.0, 10.0, 10.0, 10.0)
-        div2.padding = Insets(10.0, 10.0, 10.0, 10.0)
-        life.children.addAll(div1, div2)
+        styleHUD(div1, div2, life1, life2, time, life)
 
         val pane = StackPane()
         val layout = VBox(10.0)
@@ -68,35 +60,46 @@ class DoodleShip() : Application() {
         root.id = "game"
 
         val scene = Scene(layout)
+        styleScene(scene, primaryStage)
         keyTracker.scene = scene
-        scene.stylesheets.add(this::class.java.classLoader.getResource("menu.css")?.toString())
-        scene.stylesheets.add("https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap")
-
-        primaryStage.scene = scene
-        primaryStage.height = HEIGHT
-        primaryStage.width = WIDTH
 
         //MENU
         initMenu(layout, scene, pane)
 
         startGame(primaryStage)
 
+        addListeners(life1, life2, time, div1, div2, displayedMinutes)
+    }
+
+    private fun addListeners(life1: Label, life2: Label, time: Label, div1: HBox, div2: HBox, displayedMinutes: Long) {
         facade.collisionsListenable.addEventListener(MyCollisionListener())
 
-        facade.timeListenable.addEventListener(
-            MyTimeListener(
-                life1,
-                life2,
-                time,
-                div1,
-                div2,
-                displayedMinutes
-            )
-        )
+        facade.timeListenable.addEventListener(MyTimeListener(life1, life2, time, div1, div2, displayedMinutes))
 
         keyTracker.keyPressedListenable.addEventListener(MyKeyPressedListener())
 
         keyTracker.keyReleasedListenable.addEventListener(MyKeyReleasedListener())
+    }
+
+    private fun styleScene(scene: Scene, primaryStage: Stage) {
+        scene.stylesheets.add(this::class.java.classLoader.getResource("menu.css")?.toString())
+        scene.stylesheets.add("https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap")
+
+        primaryStage.scene = scene
+        primaryStage.height = HEIGHT
+        primaryStage.width = WIDTH
+    }
+
+    private fun styleHUD(div1: HBox, div2: HBox, life1: Label, life2: Label, time: Label, life: StackPane) {
+        div1.alignment = Pos.TOP_CENTER
+        div2.alignment = Pos.BOTTOM_CENTER
+
+        div1.children.addAll(life1, life2)
+        div2.children.addAll(time)
+
+        div1.padding = Insets(10.0, 10.0, 10.0, 10.0)
+        div2.padding = Insets(10.0, 10.0, 10.0, 10.0)
+        life.children.addAll(div1, div2)
     }
 
     private fun initMenu(layout: VBox, scene: Scene, pane: StackPane) {
@@ -120,11 +123,11 @@ class DoodleShip() : Application() {
         layout.children.addAll(name, buttons)
     }
 
-    private fun startGame(primaryState: Stage) {
+    private fun startGame(primaryStage: Stage) {
         facade.start()
         keyTracker.start()
         facade.showCollider.set(false)
-        primaryState.show()
+        primaryStage.show()
     }
 
     private fun addCssToLabelButton(label: Label, scene: Scene, pane: StackPane, newAdapter: ModelToGUI) {
@@ -198,7 +201,7 @@ class DoodleShip() : Application() {
             return String.format("%02d:%02d", displayedMinutes, secondsPassed)
         }
 
-        private fun manageGameOver() {
+        private fun manageGameOver(){
             val ships = adapter.game.movables.filter { mov -> mov is Starship }
             if (ships.isEmpty()) {
                 println("Your time was -> " + time.text)

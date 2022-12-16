@@ -158,18 +158,26 @@ class ModelToGUI(val game: Game,private val spawnProbs:Int) {
 
     fun keyFramePassed(time : Double) : ModelToGUI{
         if(game.state === States.RUNNING){
-            val spawnObject = (0..spawnProbs).random()
-            if(spawnObject <= 150){ // 0,15 % chance to spawn an powerUp
-                val newMovables = createPowerUp(game.movables, "p" + (0..1000).random())
-                return ModelToGUI(game.copy(movables = newMovables.map {it.move(time)}),spawnProbs)
+            val n = (0..spawnProbs).random()
+            if(n <= 150){ // 0,15 % chance to spawn an powerUp
+                return spawnPowerUp(time)
             }
-            if(spawnObject <= 450) { // 0,45 % chance to spawn an asteroid
-                val newMovables = createAsteroid(game.movables, "a" + (0..1000).random())
-                return ModelToGUI(game.copy(movables = newMovables.map {it.move(time)}),spawnProbs)
+            if(n <= 450) { // 0,45 % chance to spawn an asteroid
+                return spawnAsteroid(time)
             }
             return ModelToGUI(game.copy(movables = game.movables.map { it.move(time) }), spawnProbs)
         }
         return this
+    }
+
+    private fun spawnAsteroid(time: Double): ModelToGUI {
+        val newMovables = createAsteroid(game.movables, "a" + (0..1000).random())
+        return ModelToGUI(game.copy(movables = newMovables.map { it.move(time) }), spawnProbs)
+    }
+
+    private fun spawnPowerUp(time: Double): ModelToGUI {
+        val newMovables = createPowerUp(game.movables, "p" + (0..1000).random())
+        return ModelToGUI(game.copy(movables = newMovables.map { it.move(time) }), spawnProbs)
     }
 
     fun adaptElements(elements : Map<String, ElementModel>) : ModelToGUI {

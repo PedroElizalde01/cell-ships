@@ -31,7 +31,8 @@ data class Asteroid (
         val newSize = (if (size > 100.0){ size - 10 } else { size })
         return when(collider){
             is Starship -> this;
-            is Bullet -> copy(life= life - collider.damage, size = newSize, skin = skin);
+            is Bullet   -> copy(life = life - collider.damage, size = newSize, skin = skin);
+            is Asteroid -> copy(vector = Vector(vector.speed * -1, vector.rotation))
             else -> this
         }
     }
