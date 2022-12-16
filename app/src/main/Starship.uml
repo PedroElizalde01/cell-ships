@@ -1,0 +1,631 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Diagram>
+  <ID>JAVA</ID>
+  <OriginalElement>model.starship.Starship</OriginalElement>
+  <nodes>
+    <node x="260.1119624012106" y="282.0">model.maths.Position</node>
+    <node x="47.42725544150653" y="1101.0">model.powerUp.PowerUp</node>
+    <node x="2098.5387023279504" y="250.0">model.mover.Movable</node>
+    <node x="1646.4152362107375" y="2186.5">model.Game</node>
+    <node x="1575.2053689946172" y="1714.5">model.States</node>
+    <node x="874.0576923076922" y="949.5">model.gun.Gun</node>
+    <node x="1417.8249321284316" y="2503.0">modelToGUI.ModelToGUI</node>
+    <node x="1102.0576923076922" y="500.0">model.bullet.Bullet</node>
+    <node x="2014.2053689946172" y="1211.5">model.Action</node>
+    <node x="716.5576923076922" y="1222.5">model.gun.ClassicGun</node>
+    <node x="1731.2053689946172" y="1714.5">model.PlayerAction</node>
+    <node x="1614.4464862107375" y="1189.5">model.ShipMovement</node>
+    <node x="1996.205368994617" y="1714.5">model.ReleaseAction</node>
+    <node x="181.61196240121058" y="916.0">model.powerUp.PowerUpType</node>
+    <node x="601.1999321284316" y="1527.0">model.starship.Starship</node>
+    <node x="848.8576923076921" y="0.0">model.maths.Vector</node>
+    <node x="745.9464862107374" y="2087.0">model.asteroid.Asteroid</node>
+    <node x="2339.5387023279504" y="0.0">factory.GameFactoryKt</node>
+    <node x="500.55769230769215" y="1222.5">model.gun.DoubleGun</node>
+  </nodes>
+  <notes />
+  <edges>
+    <edge source="model.PlayerAction" target="model.ShipMovement" relationship="TO_ONE">
+      <point x="61.25" y="-50.5" />
+      <point x="1914.9553689946172" y="1495.0" />
+      <point x="1774.1964862107375" y="1495.0" />
+      <point x="53.25" y="72.5" />
+    </edge>
+    <edge source="model.starship.Starship" target="model.mover.Movable" relationship="REALIZATION">
+      <point x="150.46153846153845" y="-238.0" />
+      <point x="914.66147058997" y="1505.0" />
+      <point x="1435.5576923076922" y="1505.0" />
+      <point x="1435.5576923076922" y="479.0" />
+      <point x="1457.598643378325" y="479.0" />
+      <point x="1457.598643378325" y="469.0" />
+      <point x="2131.205368994617" y="469.0" />
+      <point x="-65.33333333333337" y="94.0" />
+    </edge>
+    <edge source="model.starship.Starship" target="model.maths.Vector" relationship="CREATE">
+      <point x="-50.15384615384619" y="-238.0" />
+      <point x="714.0460859745854" y="1465.0" />
+      <point x="490.05769230769215" y="1465.0" />
+      <point x="490.05769230769215" y="865.0" />
+      <point x="673.8303689946171" y="865.0" />
+      <point x="673.8303689946171" y="230.0" />
+      <point x="695.5576923076922" y="230.0" />
+      <point x="695.5576923076922" y="210.0" />
+      <point x="896.6076923076921" y="210.0" />
+      <point x="-47.75" y="95.0" />
+    </edge>
+    <edge source="modelToGUI.ModelToGUI" target="model.ShipMovement" relationship="DEPENDENCY">
+      <point x="-19.90000000000009" y="-249.0" />
+      <point x="1596.9249321284315" y="2482.0" />
+      <point x="1564.7053689946172" y="2482.0" />
+      <point x="1564.7053689946172" y="1505.0" />
+      <point x="1715.4464862107375" y="1505.0" />
+      <point x="1715.4464862107375" y="1495.0" />
+      <point x="1667.6964862107375" y="1495.0" />
+      <point x="-53.25" y="72.5" />
+    </edge>
+    <edge source="modelToGUI.ModelToGUI" target="model.asteroid.Asteroid" relationship="DEPENDENCY">
+      <point x="-99.50000000000006" y="-249.0" />
+      <point x="1517.3249321284316" y="2462.0" />
+      <point x="917.9464862107375" y="2462.0" />
+      <point x="0.0" y="172.0" />
+    </edge>
+    <edge source="model.starship.Starship" target="model.powerUp.PowerUpType" relationship="DEPENDENCY">
+      <point x="-125.38461538461536" y="-238.0" />
+      <point x="638.8153167438162" y="1495.0" />
+      <point x="457.05769230769215" y="1495.0" />
+      <point x="457.05769230769215" y="1070.0" />
+      <point x="310.6946953435129" y="1070.0" />
+      <point x="310.6946953435129" y="1060.0" />
+      <point x="341.3619624012106" y="1060.0" />
+      <point x="53.25" y="61.5" />
+    </edge>
+    <edge source="model.gun.DoubleGun" target="model.bullet.Bullet" relationship="CREATE">
+      <point x="24.5" y="-39.5" />
+      <point x="623.0576923076922" y="1080.0" />
+      <point x="604.3076923076922" y="1080.0" />
+      <point x="604.3076923076922" y="895.0" />
+      <point x="1004.5803689946172" y="895.0" />
+      <point x="1004.5803689946172" y="875.0" />
+      <point x="1182.8076923076922" y="875.0" />
+      <point x="-80.75" y="172.0" />
+    </edge>
+    <edge source="model.ReleaseAction" target="model.Action" relationship="DEPENDENCY">
+      <point x="51.499999999999886" y="-50.5" />
+      <point x="2150.705368994617" y="1505.0" />
+      <point x="2085.8214862107375" y="1505.0" />
+      <point x="2085.8214862107375" y="1495.0" />
+      <point x="2141.705368994617" y="1495.0" />
+      <point x="42.5" y="50.5" />
+    </edge>
+    <edge source="model.asteroid.Asteroid" target="model.maths.Position" relationship="TO_ONE">
+      <point x="-107.5" y="-172.0" />
+      <point x="810.4464862107374" y="2045.0" />
+      <point x="36.92725544150653" y="2045.0" />
+      <point x="36.92725544150653" y="895.0" />
+      <point x="133.98696240121058" y="895.0" />
+      <point x="133.98696240121058" y="479.0" />
+      <point x="285.33928571428555" y="479.0" />
+      <point x="285.33928571428555" y="469.0" />
+      <point x="312.8619624012106" y="469.0" />
+      <point x="-52.75" y="62.0" />
+    </edge>
+    <edge source="model.maths.Position" target="model.maths.Vector" relationship="DEPENDENCY">
+      <point x="0.0" y="-62.0" />
+      <point x="365.6119624012106" y="230.0" />
+      <point x="695.5576923076922" y="230.0" />
+      <point x="695.5576923076922" y="210.0" />
+      <point x="896.6076923076921" y="210.0" />
+      <point x="-47.75" y="95.0" />
+    </edge>
+    <edge source="model.Game" target="model.States" relationship="DEPENDENCY">
+      <point x="-239.3125" y="-72.5" />
+      <point x="1680.6027362107375" y="2065.0" />
+      <point x="1620.848643378325" y="2065.0" />
+      <point x="1620.848643378325" y="2055.0" />
+      <point x="1609.2053689946172" y="2055.0" />
+      <point x="-34.0" y="50.5" />
+    </edge>
+    <edge source="model.gun.ClassicGun" target="model.bullet.Bullet" relationship="CREATE">
+      <point x="73.5" y="-39.5" />
+      <point x="888.0576923076922" y="1070.0" />
+      <point x="830.8076923076922" y="1070.0" />
+      <point x="830.8076923076922" y="895.0" />
+      <point x="1004.5803689946172" y="895.0" />
+      <point x="1004.5803689946172" y="875.0" />
+      <point x="1182.8076923076922" y="875.0" />
+      <point x="-80.75" y="172.0" />
+    </edge>
+    <edge source="modelToGUI.ModelToGUI" target="model.mover.Movable" relationship="DEPENDENCY">
+      <point x="179.10000000000002" y="-249.0" />
+      <point x="1795.9249321284315" y="2482.0" />
+      <point x="2245.705368994617" y="2482.0" />
+      <point x="2245.705368994617" y="479.0" />
+      <point x="2234.705368994617" y="479.0" />
+      <point x="2234.705368994617" y="469.0" />
+      <point x="2261.872035661284" y="469.0" />
+      <point x="65.33333333333326" y="94.0" />
+    </edge>
+    <edge source="model.asteroid.Asteroid" target="model.maths.Position" relationship="DEPENDENCY">
+      <point x="-21.5" y="-172.0" />
+      <point x="896.4464862107374" y="2035.0" />
+      <point x="427.4999999999998" y="2035.0" />
+      <point x="427.4999999999998" y="875.0" />
+      <point x="461.19993212843156" y="875.0" />
+      <point x="461.19993212843156" y="469.0" />
+      <point x="537.3303689946171" y="469.0" />
+      <point x="537.3303689946171" y="459.0" />
+      <point x="418.3619624012106" y="459.0" />
+      <point x="52.75" y="62.0" />
+    </edge>
+    <edge source="model.gun.ClassicGun" target="model.gun.Gun" relationship="REALIZATION">
+      <point x="-73.5" y="-39.5" />
+      <point x="741.0576923076922" y="1080.0" />
+      <point x="705.1999321284316" y="1080.0" />
+      <point x="705.1999321284316" y="1060.0" />
+      <point x="898.5576923076922" y="1060.0" />
+      <point x="-73.5" y="28.0" />
+    </edge>
+    <edge source="model.starship.Starship" target="model.maths.Vector" relationship="TO_ONE">
+      <point x="125.38461538461536" y="-238.0" />
+      <point x="889.5845475130469" y="1495.0" />
+      <point x="1091.5576923076922" y="1495.0" />
+      <point x="1091.5576923076922" y="220.0" />
+      <point x="1209.857692307692" y="220.0" />
+      <point x="1209.857692307692" y="210.0" />
+      <point x="992.1076923076921" y="210.0" />
+      <point x="47.75" y="95.0" />
+    </edge>
+    <edge source="modelToGUI.ModelToGUI" target="model.States" relationship="DEPENDENCY">
+      <point x="19.899999999999977" y="-249.0" />
+      <point x="1636.7249321284316" y="2482.0" />
+      <point x="1620.848643378325" y="2482.0" />
+      <point x="1620.848643378325" y="2055.0" />
+      <point x="1609.2053689946172" y="2055.0" />
+      <point x="-34.0" y="50.5" />
+    </edge>
+    <edge source="model.Game" target="model.PlayerAction" relationship="DEPENDENCY">
+      <point x="-102.5625" y="-72.5" />
+      <point x="1817.3527362107375" y="2065.0" />
+      <point x="1792.4553689946172" y="2065.0" />
+      <point x="-61.25" y="50.5" />
+    </edge>
+    <edge source="model.bullet.Bullet" target="model.maths.Vector" relationship="TO_ONE">
+      <point x="64.60000000000002" y="-172.0" />
+      <point x="1328.1576923076923" y="479.0" />
+      <point x="1302.7272554415067" y="479.0" />
+      <point x="1302.7272554415067" y="220.0" />
+      <point x="1209.857692307692" y="220.0" />
+      <point x="1209.857692307692" y="210.0" />
+      <point x="992.1076923076921" y="210.0" />
+      <point x="47.75" y="95.0" />
+    </edge>
+    <edge source="model.powerUp.PowerUp" target="model.maths.Vector" relationship="DEPENDENCY">
+      <point x="-155.57142857142844" y="-161.0" />
+      <point x="73.35582687007809" y="1080.0" />
+      <point x="101.99999999999977" y="1080.0" />
+      <point x="101.99999999999977" y="230.0" />
+      <point x="695.5576923076922" y="230.0" />
+      <point x="695.5576923076922" y="210.0" />
+      <point x="896.6076923076921" y="210.0" />
+      <point x="-47.75" y="95.0" />
+    </edge>
+    <edge source="model.bullet.Bullet" target="model.maths.Position" relationship="TO_ONE">
+      <point x="-129.2" y="-172.0" />
+      <point x="1134.357692307692" y="479.0" />
+      <point x="285.33928571428555" y="479.0" />
+      <point x="285.33928571428555" y="469.0" />
+      <point x="312.8619624012106" y="469.0" />
+      <point x="-52.75" y="62.0" />
+    </edge>
+    <edge source="model.gun.ClassicGun" target="model.maths.Vector" relationship="CREATE">
+      <point x="24.5" y="-39.5" />
+      <point x="839.0576923076922" y="1080.0" />
+      <point x="819.8076923076922" y="1080.0" />
+      <point x="819.8076923076922" y="230.0" />
+      <point x="695.5576923076922" y="230.0" />
+      <point x="695.5576923076922" y="210.0" />
+      <point x="896.6076923076921" y="210.0" />
+      <point x="-47.75" y="95.0" />
+    </edge>
+    <edge source="model.starship.Starship" target="model.powerUp.PowerUp" relationship="DEPENDENCY">
+      <point x="-150.46153846153845" y="-238.0" />
+      <point x="613.7383936668931" y="1505.0" />
+      <point x="228.92725544150653" y="1505.0" />
+      <point x="0.0" y="161.0" />
+    </edge>
+    <edge source="modelToGUI.ModelToGUI" target="model.Game" relationship="TO_ONE">
+      <point x="59.69999999999999" y="-249.0" />
+      <point x="1676.5249321284316" y="2452.0" />
+      <point x="1783.1652362107375" y="2452.0" />
+      <point x="-136.75" y="72.5" />
+    </edge>
+    <edge source="modelToGUI.ModelToGUI" target="model.bullet.Bullet" relationship="DEPENDENCY">
+      <point x="-59.700000000000045" y="-249.0" />
+      <point x="1557.1249321284315" y="2452.0" />
+      <point x="1512.598643378325" y="2452.0" />
+      <point x="1512.598643378325" y="895.0" />
+      <point x="1004.5803689946172" y="895.0" />
+      <point x="1004.5803689946172" y="875.0" />
+      <point x="1182.8076923076922" y="875.0" />
+      <point x="-80.75" y="172.0" />
+    </edge>
+    <edge source="model.starship.Starship" target="model.gun.ClassicGun" relationship="CREATE">
+      <point x="25.076923076923094" y="-238.0" />
+      <point x="789.2768552053547" y="1455.0" />
+      <point x="863.5576923076922" y="1455.0" />
+      <point x="49.0" y="39.5" />
+    </edge>
+    <edge source="model.powerUp.PowerUp" target="model.maths.Position" relationship="DEPENDENCY">
+      <point x="0.0" y="-161.0" />
+      <point x="228.92725544150653" y="1070.0" />
+      <point x="171.11196240121058" y="1070.0" />
+      <point x="171.11196240121058" y="875.0" />
+      <point x="414.65898105779866" y="875.0" />
+      <point x="414.65898105779866" y="469.0" />
+      <point x="537.3303689946171" y="469.0" />
+      <point x="537.3303689946171" y="459.0" />
+      <point x="418.3619624012106" y="459.0" />
+      <point x="52.75" y="62.0" />
+    </edge>
+    <edge source="model.Game" target="model.mover.Movable" relationship="DEPENDENCY">
+      <point x="239.3125000000001" y="-72.5" />
+      <point x="2159.2277362107375" y="2065.0" />
+      <point x="2223.705368994617" y="2065.0" />
+      <point x="2223.705368994617" y="479.0" />
+      <point x="2234.705368994617" y="479.0" />
+      <point x="2234.705368994617" y="469.0" />
+      <point x="2261.872035661284" y="469.0" />
+      <point x="65.33333333333326" y="94.0" />
+    </edge>
+    <edge source="modelToGUI.ModelToGUI" target="model.Action" relationship="DEPENDENCY">
+      <point x="139.29999999999995" y="-249.0" />
+      <point x="1756.1249321284315" y="2472.0" />
+      <point x="2234.705368994617" y="2472.0" />
+      <point x="2234.705368994617" y="1505.0" />
+      <point x="2085.8214862107375" y="1505.0" />
+      <point x="2085.8214862107375" y="1495.0" />
+      <point x="2141.705368994617" y="1495.0" />
+      <point x="42.5" y="50.5" />
+    </edge>
+    <edge source="model.powerUp.PowerUp" target="model.powerUp.PowerUpType" relationship="DEPENDENCY">
+      <point x="103.71428571428578" y="-161.0" />
+      <point x="332.6415411557923" y="1070.0" />
+      <point x="310.6946953435129" y="1070.0" />
+      <point x="310.6946953435129" y="1060.0" />
+      <point x="341.3619624012106" y="1060.0" />
+      <point x="53.25" y="61.5" />
+    </edge>
+    <edge source="model.asteroid.Asteroid" target="model.mover.Movable" relationship="REALIZATION">
+      <point x="107.5" y="-172.0" />
+      <point x="1025.4464862107375" y="2045.0" />
+      <point x="1490.598643378325" y="2045.0" />
+      <point x="1490.598643378325" y="479.0" />
+      <point x="1457.598643378325" y="479.0" />
+      <point x="1457.598643378325" y="469.0" />
+      <point x="2131.205368994617" y="469.0" />
+      <point x="-65.33333333333337" y="94.0" />
+    </edge>
+    <edge source="model.bullet.Bullet" target="model.maths.Position" relationship="DEPENDENCY">
+      <point x="-64.60000000000002" y="-172.0" />
+      <point x="1198.957692307692" y="469.0" />
+      <point x="537.3303689946171" y="469.0" />
+      <point x="537.3303689946171" y="459.0" />
+      <point x="418.3619624012106" y="459.0" />
+      <point x="52.75" y="62.0" />
+    </edge>
+    <edge source="model.starship.Starship" target="model.gun.Gun" relationship="TO_ONE">
+      <point x="75.23076923076917" y="-238.0" />
+      <point x="839.4307013592007" y="1475.0" />
+      <point x="1002.098643378325" y="1475.0" />
+      <point x="1002.098643378325" y="1080.0" />
+      <point x="1045.5576923076922" y="1080.0" />
+      <point x="73.5" y="28.0" />
+    </edge>
+    <edge source="model.gun.ClassicGun" target="model.starship.Starship" relationship="DEPENDENCY">
+      <point x="-49.0" y="39.5" />
+      <point x="765.5576923076922" y="1445.0" />
+      <point x="764.1999321284316" y="1445.0" />
+      <point x="0.0" y="-238.0" />
+    </edge>
+    <edge source="modelToGUI.ModelToGUI" target="model.starship.Starship" relationship="DEPENDENCY">
+      <point x="-139.30000000000007" y="-249.0" />
+      <point x="1477.5249321284314" y="2472.0" />
+      <point x="11.0" y="2472.0" />
+      <point x="11.0" y="2065.0" />
+      <point x="232.7726766869248" y="2065.0" />
+      <point x="232.7726766869248" y="2025.0" />
+      <point x="682.6999321284316" y="2025.0" />
+      <point x="-81.5" y="238.0" />
+    </edge>
+    <edge source="model.powerUp.PowerUp" target="model.maths.Vector" relationship="TO_ONE">
+      <point x="-103.71428571428578" y="-161.0" />
+      <point x="125.21296972722075" y="1080.0" />
+      <point x="112.99999999999977" y="1080.0" />
+      <point x="112.99999999999977" y="220.0" />
+      <point x="1209.857692307692" y="220.0" />
+      <point x="1209.857692307692" y="210.0" />
+      <point x="992.1076923076921" y="210.0" />
+      <point x="47.75" y="95.0" />
+    </edge>
+    <edge source="model.gun.ClassicGun" target="model.maths.Position" relationship="CREATE">
+      <point x="-24.5" y="-39.5" />
+      <point x="790.0576923076922" y="1080.0" />
+      <point x="808.8076923076922" y="1080.0" />
+      <point x="808.8076923076922" y="469.0" />
+      <point x="537.3303689946171" y="469.0" />
+      <point x="537.3303689946171" y="459.0" />
+      <point x="418.3619624012106" y="459.0" />
+      <point x="52.75" y="62.0" />
+    </edge>
+    <edge source="model.powerUp.PowerUp" target="model.mover.Movable" relationship="REALIZATION">
+      <point x="155.57142857142844" y="-161.0" />
+      <point x="384.498684012935" y="1080.0" />
+      <point x="405.1119624012106" y="1080.0" />
+      <point x="405.1119624012106" y="885.0" />
+      <point x="1435.5576923076922" y="885.0" />
+      <point x="1435.5576923076922" y="479.0" />
+      <point x="1457.598643378325" y="479.0" />
+      <point x="1457.598643378325" y="469.0" />
+      <point x="2131.205368994617" y="469.0" />
+      <point x="-65.33333333333337" y="94.0" />
+    </edge>
+    <edge source="model.Game" target="model.ReleaseAction" relationship="DEPENDENCY">
+      <point x="102.5625" y="-72.5" />
+      <point x="2022.4777362107375" y="2045.0" />
+      <point x="2150.705368994617" y="2045.0" />
+      <point x="51.5" y="50.5" />
+    </edge>
+    <edge source="model.gun.Gun" target="model.bullet.Bullet" relationship="DEPENDENCY">
+      <point x="0.0" y="-28.0" />
+      <point x="972.0576923076922" y="895.0" />
+      <point x="1004.5803689946172" y="895.0" />
+      <point x="1004.5803689946172" y="875.0" />
+      <point x="1182.8076923076922" y="875.0" />
+      <point x="-80.75" y="172.0" />
+    </edge>
+    <edge source="model.asteroid.Asteroid" target="model.maths.Vector" relationship="TO_ONE">
+      <point x="150.5" y="-172.0" />
+      <point x="1068.4464862107375" y="2055.0" />
+      <point x="1501.598643378325" y="2055.0" />
+      <point x="1501.598643378325" y="220.0" />
+      <point x="1209.857692307692" y="220.0" />
+      <point x="1209.857692307692" y="210.0" />
+      <point x="992.1076923076921" y="210.0" />
+      <point x="47.75" y="95.0" />
+    </edge>
+    <edge source="model.ReleaseAction" target="model.Action" relationship="TO_ONE">
+      <point x="-51.5" y="-50.5" />
+      <point x="2047.705368994617" y="1505.0" />
+      <point x="2056.705368994617" y="1505.0" />
+      <point x="-42.5" y="50.5" />
+    </edge>
+    <edge source="model.Game" target="model.ReleaseAction" relationship="TO_MANY">
+      <point x="34.1875" y="-72.5" />
+      <point x="1954.1027362107375" y="2035.0" />
+      <point x="2047.705368994617" y="2035.0" />
+      <point x="-51.5" y="50.5" />
+    </edge>
+    <edge source="model.Game" target="model.States" relationship="TO_ONE">
+      <point x="-170.9375" y="-72.5" />
+      <point x="1748.9777362107375" y="2055.0" />
+      <point x="1677.2053689946172" y="2055.0" />
+      <point x="34.0" y="50.5" />
+    </edge>
+    <edge source="model.starship.Starship" target="model.maths.Position" relationship="DEPENDENCY">
+      <point x="-75.23076923076917" y="-238.0" />
+      <point x="688.9691628976624" y="1475.0" />
+      <point x="479.05769230769215" y="1475.0" />
+      <point x="479.05769230769215" y="469.0" />
+      <point x="537.3303689946171" y="469.0" />
+      <point x="537.3303689946171" y="459.0" />
+      <point x="418.3619624012106" y="459.0" />
+      <point x="52.75" y="62.0" />
+    </edge>
+    <edge source="model.PlayerAction" target="model.ShipMovement" relationship="DEPENDENCY">
+      <point x="-61.25" y="-50.5" />
+      <point x="1792.4553689946172" y="1505.0" />
+      <point x="1715.4464862107375" y="1505.0" />
+      <point x="1715.4464862107375" y="1495.0" />
+      <point x="1667.6964862107375" y="1495.0" />
+      <point x="-53.25" y="72.5" />
+    </edge>
+    <edge source="model.asteroid.Asteroid" target="model.starship.Starship" relationship="DEPENDENCY">
+      <point x="-64.5" y="-172.0" />
+      <point x="853.4464862107374" y="2065.0" />
+      <point x="232.7726766869248" y="2065.0" />
+      <point x="232.7726766869248" y="2025.0" />
+      <point x="682.6999321284316" y="2025.0" />
+      <point x="-81.5" y="238.0" />
+    </edge>
+    <edge source="model.starship.Starship" target="model.asteroid.Asteroid" relationship="DEPENDENCY">
+      <point x="81.5" y="238.0" />
+      <point x="845.6999321284316" y="2025.0" />
+      <point x="1479.598643378325" y="2025.0" />
+      <point x="1479.598643378325" y="2065.0" />
+      <point x="982.4464862107374" y="2065.0" />
+      <point x="64.5" y="-172.0" />
+    </edge>
+    <edge source="model.gun.DoubleGun" target="model.starship.Starship" relationship="DEPENDENCY">
+      <point x="49.0" y="39.5" />
+      <point x="647.5576923076922" y="1445.0" />
+      <point x="764.1999321284316" y="1445.0" />
+      <point x="0.0" y="-238.0" />
+    </edge>
+    <edge source="model.starship.Starship" target="model.maths.Position" relationship="TO_ONE">
+      <point x="-100.30769230769226" y="-238.0" />
+      <point x="663.8922398207393" y="1485.0" />
+      <point x="468.05769230769215" y="1485.0" />
+      <point x="468.05769230769215" y="865.0" />
+      <point x="403.65898105779866" y="865.0" />
+      <point x="403.65898105779866" y="479.0" />
+      <point x="285.33928571428555" y="479.0" />
+      <point x="285.33928571428555" y="469.0" />
+      <point x="312.8619624012106" y="469.0" />
+      <point x="-52.75" y="62.0" />
+    </edge>
+    <edge source="model.asteroid.Asteroid" target="model.maths.Vector" relationship="DEPENDENCY">
+      <point x="-150.5" y="-172.0" />
+      <point x="767.4464862107374" y="2055.0" />
+      <point x="25.92725544150653" y="2055.0" />
+      <point x="25.92725544150653" y="230.0" />
+      <point x="695.5576923076922" y="230.0" />
+      <point x="695.5576923076922" y="210.0" />
+      <point x="896.6076923076921" y="210.0" />
+      <point x="-47.75" y="95.0" />
+    </edge>
+    <edge source="modelToGUI.ModelToGUI" target="model.powerUp.PowerUp" relationship="DEPENDENCY">
+      <point x="-179.10000000000008" y="-249.0" />
+      <point x="1437.7249321284314" y="2482.0" />
+      <point x="0.0" y="2482.0" />
+      <point x="0.0" y="1505.0" />
+      <point x="228.92725544150653" y="1505.0" />
+      <point x="0.0" y="161.0" />
+    </edge>
+    <edge source="model.bullet.Bullet" target="model.mover.Movable" relationship="REALIZATION">
+      <point x="129.20000000000005" y="-172.0" />
+      <point x="1392.7576923076922" y="479.0" />
+      <point x="1457.598643378325" y="479.0" />
+      <point x="1457.598643378325" y="469.0" />
+      <point x="2131.205368994617" y="469.0" />
+      <point x="-65.33333333333337" y="94.0" />
+    </edge>
+    <edge source="model.Game" target="model.PlayerAction" relationship="TO_MANY">
+      <point x="-34.1875" y="-72.5" />
+      <point x="1885.7277362107375" y="2065.0" />
+      <point x="1914.9553689946172" y="2065.0" />
+      <point x="61.25" y="50.5" />
+    </edge>
+    <edge source="model.gun.DoubleGun" target="model.maths.Position" relationship="CREATE">
+      <point x="-73.5" y="-39.5" />
+      <point x="525.0576923076922" y="1080.0" />
+      <point x="560.3303689946171" y="1080.0" />
+      <point x="560.3303689946171" y="469.0" />
+      <point x="537.3303689946171" y="469.0" />
+      <point x="537.3303689946171" y="459.0" />
+      <point x="418.3619624012106" y="459.0" />
+      <point x="52.75" y="62.0" />
+    </edge>
+    <edge source="model.starship.Starship" target="model.gun.Gun" relationship="DEPENDENCY">
+      <point x="50.15384615384619" y="-238.0" />
+      <point x="814.3537782822777" y="1465.0" />
+      <point x="982.8076923076922" y="1465.0" />
+      <point x="982.8076923076922" y="1080.0" />
+      <point x="996.5576923076922" y="1080.0" />
+      <point x="24.5" y="28.0" />
+    </edge>
+    <edge source="model.gun.Gun" target="model.starship.Starship" relationship="DEPENDENCY">
+      <point x="-24.5" y="28.0" />
+      <point x="947.5576923076922" y="1080.0" />
+      <point x="961.3076923076922" y="1080.0" />
+      <point x="961.3076923076922" y="1445.0" />
+      <point x="764.1999321284316" y="1445.0" />
+      <point x="0.0" y="-238.0" />
+    </edge>
+    <edge source="model.gun.DoubleGun" target="model.gun.Gun" relationship="REALIZATION">
+      <point x="73.5" y="-39.5" />
+      <point x="672.0576923076922" y="1080.0" />
+      <point x="705.1999321284316" y="1080.0" />
+      <point x="705.1999321284316" y="1060.0" />
+      <point x="898.5576923076922" y="1060.0" />
+      <point x="-73.5" y="28.0" />
+    </edge>
+    <edge source="model.starship.Starship" target="model.gun.DoubleGun" relationship="CREATE">
+      <point x="-25.076923076923094" y="-238.0" />
+      <point x="739.1230090515085" y="1455.0" />
+      <point x="549.5576923076922" y="1455.0" />
+      <point x="-49.0" y="39.5" />
+    </edge>
+    <edge source="model.gun.DoubleGun" target="model.maths.Vector" relationship="CREATE">
+      <point x="-24.5" y="-39.5" />
+      <point x="574.0576923076922" y="1080.0" />
+      <point x="593.3076923076922" y="1080.0" />
+      <point x="593.3076923076922" y="875.0" />
+      <point x="819.8076923076922" y="875.0" />
+      <point x="819.8076923076922" y="230.0" />
+      <point x="695.5576923076922" y="230.0" />
+      <point x="695.5576923076922" y="210.0" />
+      <point x="896.6076923076921" y="210.0" />
+      <point x="-47.75" y="95.0" />
+    </edge>
+    <edge source="model.Game" target="model.mover.Movable" relationship="TO_MANY">
+      <point x="170.9375" y="-72.5" />
+      <point x="2090.8527362107375" y="2055.0" />
+      <point x="2212.705368994617" y="2055.0" />
+      <point x="2212.705368994617" y="479.0" />
+      <point x="2196.5387023279504" y="479.0" />
+      <point x="0.0" y="94.0" />
+    </edge>
+    <edge source="model.powerUp.PowerUp" target="model.powerUp.PowerUpType" relationship="TO_ONE">
+      <point x="51.85714285714289" y="-161.0" />
+      <point x="280.7843982986494" y="1080.0" />
+      <point x="234.86196240121058" y="1080.0" />
+      <point x="-53.25" y="61.5" />
+    </edge>
+    <edge source="model.powerUp.PowerUp" target="model.maths.Position" relationship="TO_ONE">
+      <point x="-51.85714285714289" y="-161.0" />
+      <point x="177.07011258436364" y="1080.0" />
+      <point x="140.82493212843156" y="1080.0" />
+      <point x="140.82493212843156" y="479.0" />
+      <point x="285.33928571428555" y="479.0" />
+      <point x="285.33928571428555" y="469.0" />
+      <point x="312.8619624012106" y="469.0" />
+      <point x="-52.75" y="62.0" />
+    </edge>
+    <edge source="model.starship.Starship" target="model.bullet.Bullet" relationship="DEPENDENCY">
+      <point x="100.30769230769226" y="-238.0" />
+      <point x="864.5076244361238" y="1485.0" />
+      <point x="1080.5576923076922" y="1485.0" />
+      <point x="1080.5576923076922" y="895.0" />
+      <point x="1004.5803689946172" y="895.0" />
+      <point x="1004.5803689946172" y="875.0" />
+      <point x="1182.8076923076922" y="875.0" />
+      <point x="-80.75" y="172.0" />
+    </edge>
+    <edge source="model.asteroid.Asteroid" target="model.bullet.Bullet" relationship="DEPENDENCY">
+      <point x="21.5" y="-172.0" />
+      <point x="939.4464862107374" y="2035.0" />
+      <point x="1452.5769230769229" y="2035.0" />
+      <point x="1452.5769230769229" y="895.0" />
+      <point x="1004.5803689946172" y="895.0" />
+      <point x="1004.5803689946172" y="875.0" />
+      <point x="1182.8076923076922" y="875.0" />
+      <point x="-80.75" y="172.0" />
+    </edge>
+    <edge source="model.bullet.Bullet" target="model.asteroid.Asteroid" relationship="DEPENDENCY">
+      <point x="80.75" y="172.0" />
+      <point x="1344.3076923076922" y="875.0" />
+      <point x="1479.598643378325" y="875.0" />
+      <point x="1479.598643378325" y="2065.0" />
+      <point x="982.4464862107374" y="2065.0" />
+      <point x="64.5" y="-172.0" />
+    </edge>
+    <edge source="modelToGUI.ModelToGUI" target="model.Game" relationship="DEPENDENCY">
+      <point x="99.5" y="-249.0" />
+      <point x="1716.3249321284316" y="2462.0" />
+      <point x="2056.6652362107375" y="2462.0" />
+      <point x="136.75" y="72.5" />
+    </edge>
+    <edge source="model.bullet.Bullet" target="model.maths.Vector" relationship="DEPENDENCY">
+      <point x="0.0" y="-172.0" />
+      <point x="1263.5576923076922" y="479.0" />
+      <point x="1285.598643378325" y="479.0" />
+      <point x="1285.598643378325" y="230.0" />
+      <point x="695.5576923076922" y="230.0" />
+      <point x="695.5576923076922" y="210.0" />
+      <point x="896.6076923076921" y="210.0" />
+      <point x="-47.75" y="95.0" />
+    </edge>
+  </edges>
+  <settings layout="Hierarchic" zoom="0.4" showDependencies="true" x="1257.0" y="2390.5" />
+  <SelectedNodes />
+  <Categories>
+    <Category>Constructors</Category>
+    <Category>Fields</Category>
+    <Category>Inner Classes</Category>
+    <Category>Methods</Category>
+    <Category>Properties</Category>
+  </Categories>
+  <SCOPE>All</SCOPE>
+  <VISIBILITY>private</VISIBILITY>
+</Diagram>
+
