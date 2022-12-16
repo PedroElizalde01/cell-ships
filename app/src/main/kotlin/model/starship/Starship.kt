@@ -16,7 +16,6 @@ import model.powerUp.PowerUpType
 data class Starship(
     val id: String,
     val life: Int,
-    val score:Int,
     val pos: Position,
     val vector: Vector,
     val skin: ImageRef,
@@ -36,8 +35,6 @@ data class Starship(
     override fun id() : String = id
 
     override fun life() : Int  = life
-
-    fun score() : Int = score
 
     override fun x() : Double = pos.x
 

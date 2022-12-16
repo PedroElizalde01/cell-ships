@@ -9,17 +9,13 @@ import javafx.scene.Cursor
 import javafx.scene.Scene
 import javafx.scene.control.Label
 import javafx.scene.input.KeyCode
-import javafx.scene.layout.Border
 import javafx.scene.layout.HBox
 import javafx.scene.layout.StackPane
 import javafx.scene.layout.VBox
 import javafx.scene.paint.Color
-import javafx.scene.paint.Paint
 import javafx.stage.Stage
 import model.Game
 import model.States
-import model.asteroid.Asteroid
-import model.bullet.Bullet
 import model.starship.Starship
 import modelToGUI.ModelToGUI
 import kotlin.system.exitProcess
@@ -38,12 +34,11 @@ class DoodleShip() : Application() {
 
     override fun start(primaryStage: Stage) {
         adapter = adapter.addElements(facade.elements)
+        val displayedMinutes: Long = 0
+        val starTime = System.currentTimeMillis()
         val life = StackPane()
         val life1 = Label(LIFE.toString())
         val life2 = Label(LIFE.toString())
-
-        val displayedMinutes: Long = 0
-        val starTime = System.currentTimeMillis()
         val time = Label("00:00")
 
         val div1 = HBox(250.0)
@@ -147,16 +142,7 @@ class DoodleShip() : Application() {
                 life1 = adapter.updateLives("player1")
                 life2 = adapter.updateLives("player2")
 
-                val timePassed: Long = System.currentTimeMillis() - startTime
-                var secondsPassed = timePassed / 1000
-                if( secondsPassed >= 60L){
-                    startTime= System.currentTimeMillis()
-                    secondsPassed = 0
-                    displayedMinutes += 1
-                }
-
-                val currentTime = String.format("%02d:%02d", displayedMinutes, secondsPassed)
-                time = Label(currentTime)
+                time = Label(getCurrentTime())
                 life1.style = "-fx-font-family: 'Rock Salt', monospace; -fx-font-size: 40"
                 life2.style = "-fx-font-family: 'Rock Salt', monospace; -fx-font-size: 40"
                 time.style = "-fx-font-family: 'Rock Salt', monospace; -fx-font-size: 40"
@@ -171,23 +157,35 @@ class DoodleShip() : Application() {
                 div1.children[2] = life1
                 div2.children[0] = time
 
-                var finalTimes = listOf<String>()
                 if (life1.text == "" && life2.text == "") {
-                    facade.stop()
-                    keyTracker.stop()
-                    exitProcess(0) // change for GAME OVER screen
+                    manageGameOver()
                 }
             } else if (adapter.game.state == States.PAUSED) {
-                val timePassed: Long = System.currentTimeMillis() - startTime
-                var secondsPassed = timePassed / 1000
-                if( secondsPassed >= 60L){
-                    startTime= System.currentTimeMillis()
-                    secondsPassed = 0
-                    displayedMinutes += 1
-                }
+                time = Label(time.text)
+            }
+        }
 
-                val currentTime = String.format("%02d:%02d", displayedMinutes, secondsPassed)
-                time = Label(currentTime)
+        private fun getCurrentTime() : String{
+            val timePassed: Long = System.currentTimeMillis() - startTime
+            var secondsPassed = timePassed / 1000
+            if( secondsPassed >= 60L){
+                startTime= System.currentTimeMillis()
+                secondsPassed = 0
+                displayedMinutes += 1
+            }
+
+            return String.format("%02d:%02d", displayedMinutes, secondsPassed)
+        }
+
+        private fun manageGameOver(){
+            val ships = adapter.game.movables.filter {mov -> mov is Starship}
+            if(ships.isEmpty()){
+                println("Your time was -> " + time.text)
+                exitProcess(0)
+                //if (adapter.game.state == States.RUNNING) {
+                //    facade.stop()
+                //    keyTracker.stop()
+                //}
             }
         }
     }
@@ -195,7 +193,6 @@ class DoodleShip() : Application() {
     class MyCollisionListener() : EventListener<Collision> {
         override fun handle(event: Collision) {
             adapter = adapter.collision(event.element1Id, event.element2Id, facade.elements).addElements(facade.elements)
-            // check bullet hit asteroid?
         }
     }
 

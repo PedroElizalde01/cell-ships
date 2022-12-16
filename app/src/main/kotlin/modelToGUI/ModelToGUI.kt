@@ -104,7 +104,7 @@ class ModelToGUI(val game: Game,private val spawnProbs:Int) {
         if(game.state == States.RUNNING){
             val starship = (game.movables.find {it.id() == id} as Starship)
             val currentBullets = game.movables.filter { mov -> mov is Bullet &&  mov.shipId == starship.id}
-            if(currentBullets.size >= 5) return this //should delete bullet? - Pedro
+            if(currentBullets.size >= 6) return this
             return ModelToGUI(game.copy(movables = game.movables + starship.shoot()),spawnProbs)
         }
         return this
@@ -119,7 +119,7 @@ class ModelToGUI(val game: Game,private val spawnProbs:Int) {
         val collide2 = movable2.collision(movable1)
         if(collide1.life() > 0) remainingMovables = remainingMovables.plus(collide1)
         if(collide2.life() > 0) remainingMovables = remainingMovables.plus(collide2)
-        val newModelToGUI = ModelToGUI(game.copy(movables = remainingMovables),spawnProbs=if(spawnProbs > 200){ spawnProbs - 1 } else { spawnProbs })
+        val newModelToGUI = ModelToGUI(game.copy(movables = remainingMovables),spawnProbs)
         val removedMovables = game.movables.filter { movable -> !remainingMovables.any {newMovable -> newMovable.id() == movable.id() } }
         removedMovables.forEach { elements.remove(it.id())}
         return newModelToGUI
@@ -151,7 +151,7 @@ class ModelToGUI(val game: Game,private val spawnProbs:Int) {
         return this
     }
 
-    private fun togglePause() : ModelToGUI {
+    fun togglePause() : ModelToGUI {
         if(game.state == States.RUNNING) return ModelToGUI(game.copy(state = States.PAUSED),spawnProbs)
         return ModelToGUI(game.copy(state = States.RUNNING),spawnProbs)
     }
@@ -200,13 +200,6 @@ class ModelToGUI(val game: Game,private val spawnProbs:Int) {
     fun updateLives(id : String) : Label {
         return when(val element = game.movables.find {it.id() === id}){
             is Starship -> Label("Life: " + element.life())
-            else -> { Label("") }
-        }
-    }
-
-    fun updateScore(id : String) : Label {
-        return when(val element = game.movables.find {it.id() === id}){
-            is Starship -> Label("Score: " + element.score())
             else -> { Label("") }
         }
     }

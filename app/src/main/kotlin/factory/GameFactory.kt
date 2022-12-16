@@ -33,7 +33,6 @@ fun classicSolo(): Game {
     val starship = Starship(
         "player1",
         LIFE,
-        0,
         CENTER,
         Vector(0.0, 0.0),
         STARSHIP1,
@@ -62,7 +61,6 @@ fun classicDuo() : Game {
     val starship1 = Starship(
         "player1",
         LIFE,
-        0,
         Position(WIDTH * 3 / 4, HEIGHT / 2),
         Vector(0.0, 0.0),
         STARSHIP1,
@@ -71,7 +69,6 @@ fun classicDuo() : Game {
     val starship2 = Starship(
         "player2",
         LIFE,
-        0,
         Position(WIDTH / 4, HEIGHT / 2),
         Vector(0.0, 0.0),
         STARSHIP3,
@@ -118,7 +115,7 @@ fun createPowerUp(movables: List<Movable>, id: String) : List<Movable> {
     val currentPowerUps = movables.filter { movable -> movable is PowerUp }
     if (currentPowerUps.size >= 2) return movables
     val probs = (0..100).random()
-    if(probs > 90) {
+    if(probs > 85) {
         val powerUp = PowerUp(
             id,
             spawnInBorder(),
@@ -127,7 +124,7 @@ fun createPowerUp(movables: List<Movable>, id: String) : List<Movable> {
             PowerUpType.DOUBLE_SHOOT
         )
         return movables.plus(powerUp)
-    } else if (probs > 70){
+    } else if (probs > 65){
         val powerUp = PowerUp(
             id,
             spawnInBorder(),
@@ -154,7 +151,7 @@ private fun pickAsteroidSkin() : String{
     }
 }
 
-fun spawnInBorder() : Position {
+private fun spawnInBorder() : Position {
     return when((0..3).random()){
         0-> Position(0.0,(0..HEIGHT.toInt()).random().toDouble())
         1-> Position((0..WIDTH.toInt()).random().toDouble(),0.0)
