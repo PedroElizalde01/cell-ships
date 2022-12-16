@@ -96,10 +96,10 @@ class DoodleShip() : Application() {
         val buttons = HBox(100.0)
         buttons.alignment = Pos.CENTER
 
-        val onePlayer = Label("One Player")
+        val onePlayer = Label("Solo")
         addCssToLabelButton(onePlayer, scene, pane, ModelToGUI(classicSolo(), SPAWN_PROBS))
 
-        val twoPlayer = Label("Two Player")
+        val twoPlayer = Label("Co-op")
         addCssToLabelButton(twoPlayer, scene, pane, ModelToGUI(classicDuo(), SPAWN_PROBS))
 
         buttons.children.addAll(onePlayer, twoPlayer)
@@ -181,11 +181,9 @@ class DoodleShip() : Application() {
             val ships = adapter.game.movables.filter {mov -> mov is Starship}
             if(ships.isEmpty()){
                 println("Your time was -> " + time.text)
+                facade.stop()
+                keyTracker.stop()
                 exitProcess(0)
-                //if (adapter.game.state == States.RUNNING) {
-                //    facade.stop()
-                //    keyTracker.stop()
-                //}
             }
         }
     }
