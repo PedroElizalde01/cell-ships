@@ -100,6 +100,8 @@ fun classicDuo() : Game {
 }
 
 fun createAsteroid(movables: List<Movable>, id: String) : List<Movable> {
+    val currentAsteroids = movables.filter { movable -> movable is Asteroid }
+    if (currentAsteroids.size >= 8) return movables
     val life = (60..200).random()
     val asteroid = Asteroid(
         id,
@@ -113,6 +115,8 @@ fun createAsteroid(movables: List<Movable>, id: String) : List<Movable> {
 }
 
 fun createPowerUp(movables: List<Movable>, id: String) : List<Movable> {
+    val currentPowerUps = movables.filter { movable -> movable is PowerUp }
+    if (currentPowerUps.size >= 2) return movables
     val probs = (0..100).random()
     if(probs > 90) {
         val powerUp = PowerUp(

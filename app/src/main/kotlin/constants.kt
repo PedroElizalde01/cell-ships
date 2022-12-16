@@ -2,8 +2,8 @@ import edu.austral.ingsis.starships.ui.ImageRef
 import javafx.scene.input.KeyCode
 import model.maths.Position
 
-val HEIGHT = 1000.0
-val WIDTH = 1500.0
+val HEIGHT = 700.0
+val WIDTH = 1100.0
 
 val COLLIDE_DAMAGE = 10
 val BULLET_SPEED = 12.0

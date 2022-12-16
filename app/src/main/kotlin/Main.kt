@@ -9,10 +9,12 @@ import javafx.scene.Cursor
 import javafx.scene.Scene
 import javafx.scene.control.Label
 import javafx.scene.input.KeyCode
+import javafx.scene.layout.Border
 import javafx.scene.layout.HBox
 import javafx.scene.layout.StackPane
 import javafx.scene.layout.VBox
 import javafx.scene.paint.Color
+import javafx.scene.paint.Paint
 import javafx.stage.Stage
 import model.Game
 import model.States
@@ -34,24 +36,24 @@ fun main() {
 
 class DoodleShip() : Application() {
 
-
     override fun start(primaryStage: Stage) {
         adapter = adapter.addElements(facade.elements)
         val life = StackPane()
-        var life1 = Label(LIFE.toString())
-        var life2 = Label(LIFE.toString())
+        val life1 = Label(LIFE.toString())
+        val life2 = Label(LIFE.toString())
 
-        var displayedMinutes: Long = 0
-        var starTime = System.currentTimeMillis()
-        var time = Label("00:00")
+        val displayedMinutes: Long = 0
+        val starTime = System.currentTimeMillis()
+        val time = Label("00:00")
 
-        val div1 = HBox(50.0)
+        val div1 = HBox(250.0)
         val div2 = HBox(50.0)
+        val blankSpace = HBox(100.0)
 
-        div1.alignment = Pos.TOP_LEFT
+        div1.alignment = Pos.TOP_CENTER
         div2.alignment = Pos.BOTTOM_CENTER
 
-        div1.children.addAll(life1, life2)
+        div1.children.addAll(life1, blankSpace, life2)
         div2.children.addAll(time)
 
         div1.padding = Insets(10.0, 10.0, 10.0, 10.0)
@@ -59,7 +61,7 @@ class DoodleShip() : Application() {
         life.children.addAll(div1, div2)
 
         val pane = StackPane()
-        val layout = VBox(100.0)
+        val layout = VBox(10.0)
 
         val root = facade.view
         pane.children.addAll(root, life)
@@ -75,24 +77,7 @@ class DoodleShip() : Application() {
         primaryStage.width = WIDTH
 
         //MENU
-        layout.alignment = Pos.CENTER
-        layout.id = "pane"
-
-        val name = Label("Doodle-Ships")
-        name.textFill = Color.BLACK
-        name.style = "-fx-font-family: 'Rock Salt', monospace; -fx-font-size: 150"
-
-        val buttons = HBox(100.0)
-        buttons.alignment = Pos.CENTER
-
-        val onePlayer = Label("One Player")
-        addCssToLabelButton(onePlayer, scene, pane, ModelToGUI(classicSolo(), SPAWN_PROBS))
-
-        val twoPlayer = Label("Two Player")
-        addCssToLabelButton(twoPlayer, scene, pane, ModelToGUI(classicDuo(), SPAWN_PROBS))
-
-        buttons.children.addAll(onePlayer, twoPlayer)
-        layout.children.addAll(name, buttons)
+        initMenu(layout, scene, pane)
 
         startGame(primaryStage)
 
@@ -105,16 +90,38 @@ class DoodleShip() : Application() {
         keyTracker.keyReleasedListenable.addEventListener(MyKeyReleasedListener())
     }
 
+    private fun initMenu(layout: VBox, scene: Scene, pane: StackPane) {
+        layout.alignment = Pos.CENTER
+        layout.id = "pane"
+
+        val name = Label("Doodle-Ships")
+        name.textFill = Color.BLACK
+        name.style = "-fx-font-family: 'Rock Salt', monospace; -fx-font-size: 100"
+
+        val buttons = HBox(100.0)
+        buttons.alignment = Pos.CENTER
+
+        val onePlayer = Label("One Player")
+        addCssToLabelButton(onePlayer, scene, pane, ModelToGUI(classicSolo(), SPAWN_PROBS))
+
+        val twoPlayer = Label("Two Player")
+        addCssToLabelButton(twoPlayer, scene, pane, ModelToGUI(classicDuo(), SPAWN_PROBS))
+
+        buttons.children.addAll(onePlayer, twoPlayer)
+        layout.children.addAll(name, buttons)
+    }
+
     private fun startGame(primaryState: Stage) {
         facade.start()
         keyTracker.start()
+        facade.showCollider.set(false)
         primaryState.show()
     }
 
     private fun addCssToLabelButton(label: Label, scene: Scene, pane: StackPane, newAdapter: ModelToGUI) {
-        label.style = "-fx-font-family: 'Rock Salt', monospace; -fx-font-size: 80"
+        label.style = "-fx-font-family: 'Rock Salt', monospace; -fx-font-size: 50"
         label.textFill = Color.BLACK
-        label.style = "-fx-font-family: 'Rock Salt', monospace; -fx-font-size: 80"
+        label.style = "-fx-font-family: 'Rock Salt', monospace; -fx-font-size: 50"
         label.setOnMouseEntered {
             label.textFill = Color.RED
             label.cursor = Cursor.HAND
@@ -126,10 +133,6 @@ class DoodleShip() : Application() {
             scene.root = pane
             adapter = newAdapter
         }
-    }
-
-    private fun showTime(){
-
     }
 
     class MyTimeListener(var life1: Label, var life2: Label,var time:Label, var div1: HBox, var div2: HBox, var startTime: Long, var displayedMinutes:Long) : EventListener<TimePassed>{
@@ -154,15 +157,18 @@ class DoodleShip() : Application() {
 
                 val currentTime = String.format("%02d:%02d", displayedMinutes, secondsPassed)
                 time = Label(currentTime)
-                life1.style = "-fx-font-family: 'Rock Salt', monospace; -fx-font-size: 50"
-                life2.style = "-fx-font-family: 'Rock Salt', monospace; -fx-font-size: 50"
-                time.style = "-fx-font-family: 'Rock Salt', monospace; -fx-font-size: 50"
+                life1.style = "-fx-font-family: 'Rock Salt', monospace; -fx-font-size: 40"
+                life2.style = "-fx-font-family: 'Rock Salt', monospace; -fx-font-size: 40"
+                time.style = "-fx-font-family: 'Rock Salt', monospace; -fx-font-size: 40"
                 life1.textFill = Color.GREEN
                 life2.textFill = Color.BLUE
                 time.textFill = Color.BLACK
 
+                val blankSpace = HBox(100.0)
+
                 div1.children[0] = life2
-                div1.children[1] = life1
+                div1.children[1] = blankSpace
+                div1.children[2] = life1
                 div2.children[0] = time
 
                 var finalTimes = listOf<String>()

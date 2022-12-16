@@ -103,6 +103,8 @@ class ModelToGUI(val game: Game,private val spawnProbs:Int) {
     private fun shoot(id: String): ModelToGUI{
         if(game.state == States.RUNNING){
             val starship = (game.movables.find {it.id() == id} as Starship)
+            val currentBullets = game.movables.filter { mov -> mov is Bullet &&  mov.shipId == starship.id}
+            if(currentBullets.size >= 5) return this //should delete bullet? - Pedro
             return ModelToGUI(game.copy(movables = game.movables + starship.shoot()),spawnProbs)
         }
         return this
