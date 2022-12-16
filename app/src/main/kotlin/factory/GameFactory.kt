@@ -153,8 +153,8 @@ private fun pickAsteroidSkin() : String{
 
 private fun spawnInBorder() : Position {
     return when((0..3).random()){
-        0-> Position(0.0,(0..HEIGHT.toInt()).random().toDouble())
-        1-> Position((0..WIDTH.toInt()).random().toDouble(),0.0)
+        0-> Position(-80.0,(0..HEIGHT.toInt()).random().toDouble())
+        1-> Position((0..WIDTH.toInt()).random().toDouble(),-80.0)
         2-> Position(WIDTH,(0..HEIGHT.toInt()).random().toDouble())
         3-> Position((0..WIDTH.toInt()).random().toDouble(), HEIGHT)
         else -> {

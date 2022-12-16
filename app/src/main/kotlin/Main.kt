@@ -32,23 +32,28 @@ fun main() {
 
 class DoodleShip() : Application() {
 
+    companion object {
+        var pauseTimeList: List<Long> = listOf()
+        var pauseTime: Long = 0L
+        var startTime = 0L
+    }
+
     override fun start(primaryStage: Stage) {
         adapter = adapter.addElements(facade.elements)
         val displayedMinutes: Long = 0
-        val starTime = System.currentTimeMillis()
+
         val life = StackPane()
         val life1 = Label(LIFE.toString())
         val life2 = Label(LIFE.toString())
         val time = Label("00:00")
 
-        val div1 = HBox(250.0)
+        val div1 = HBox(300.0)
         val div2 = HBox(50.0)
-        val blankSpace = HBox(100.0)
 
         div1.alignment = Pos.TOP_CENTER
         div2.alignment = Pos.BOTTOM_CENTER
 
-        div1.children.addAll(life1, blankSpace, life2)
+        div1.children.addAll(life1, life2)
         div2.children.addAll(time)
 
         div1.padding = Insets(10.0, 10.0, 10.0, 10.0)
@@ -78,7 +83,16 @@ class DoodleShip() : Application() {
 
         facade.collisionsListenable.addEventListener(MyCollisionListener())
 
-        facade.timeListenable.addEventListener(MyTimeListener(life1,life2,time,div1,div2,starTime, displayedMinutes))
+        facade.timeListenable.addEventListener(
+            MyTimeListener(
+                life1,
+                life2,
+                time,
+                div1,
+                div2,
+                displayedMinutes
+            )
+        )
 
         keyTracker.keyPressedListenable.addEventListener(MyKeyPressedListener())
 
@@ -125,12 +139,21 @@ class DoodleShip() : Application() {
             label.textFill = Color.BLACK
         }
         label.setOnMouseClicked {
+            startTime = System.currentTimeMillis()
             scene.root = pane
             adapter = newAdapter
         }
     }
 
-    class MyTimeListener(var life1: Label, var life2: Label,var time:Label, var div1: HBox, var div2: HBox, var startTime: Long, var displayedMinutes:Long) : EventListener<TimePassed>{
+    class MyTimeListener(
+        private var life1: Label,
+        private var life2: Label,
+        private var time: Label,
+        private var div1: HBox,
+        private var div2: HBox,
+        private var displayedMinutes: Long
+    ) : EventListener<TimePassed> {
+
         override fun handle(event: TimePassed) {
             pressedKeys.forEach { adapter = adapter.pressedKey(it, event.secondsSinceLastTime) }
             if (adapter.game.state == States.RUNNING) {
@@ -145,31 +168,29 @@ class DoodleShip() : Application() {
                 time = Label(getCurrentTime())
                 life1.style = "-fx-font-family: 'Rock Salt', monospace; -fx-font-size: 40"
                 life2.style = "-fx-font-family: 'Rock Salt', monospace; -fx-font-size: 40"
+                life1.alignment = Pos.TOP_RIGHT
+                life2.alignment = Pos.TOP_LEFT
                 time.style = "-fx-font-family: 'Rock Salt', monospace; -fx-font-size: 40"
                 life1.textFill = Color.GREEN
                 life2.textFill = Color.BLUE
                 time.textFill = Color.BLACK
 
-                val blankSpace = HBox(100.0)
-
                 div1.children[0] = life2
-                div1.children[1] = blankSpace
-                div1.children[2] = life1
+                div1.children[1] = life1
                 div2.children[0] = time
 
                 if (life1.text == "" && life2.text == "") {
                     manageGameOver()
                 }
-            } else if (adapter.game.state == States.PAUSED) {
-                time = Label(time.text)
             }
         }
 
-        private fun getCurrentTime() : String{
-            val timePassed: Long = System.currentTimeMillis() - startTime
-            var secondsPassed = timePassed / 1000
-            if( secondsPassed >= 60L){
-                startTime= System.currentTimeMillis()
+        private fun getCurrentTime(): String {
+            val total = pauseTimeList.sum()
+            val timePassed = System.currentTimeMillis() - startTime - total
+            var secondsPassed = (timePassed / 1000)
+            if (secondsPassed >= 60L) {
+                startTime = System.currentTimeMillis()
                 secondsPassed = 0
                 displayedMinutes += 1
             }
@@ -177,9 +198,9 @@ class DoodleShip() : Application() {
             return String.format("%02d:%02d", displayedMinutes, secondsPassed)
         }
 
-        private fun manageGameOver(){
-            val ships = adapter.game.movables.filter {mov -> mov is Starship}
-            if(ships.isEmpty()){
+        private fun manageGameOver() {
+            val ships = adapter.game.movables.filter { mov -> mov is Starship }
+            if (ships.isEmpty()) {
                 println("Your time was -> " + time.text)
                 facade.stop()
                 keyTracker.stop()
@@ -208,9 +229,16 @@ class DoodleShip() : Application() {
                 pressedKeys = pressedKeys.filter { it != event.key }
             }
             adapter = adapter.releasedKey(event).addElements(facade.elements)
+            if (event.key === KeyCode.P) {
+                if (adapter.game.state === States.PAUSED) {
+                    pauseTime = System.currentTimeMillis()
+                }
+                if (adapter.game.state === States.RUNNING) {
+                    pauseTimeList += (System.currentTimeMillis() - pauseTime)
+                }
+            }
         }
     }
-
 }
 
 

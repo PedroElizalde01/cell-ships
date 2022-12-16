@@ -12,7 +12,6 @@ data class Game (
 enum class States{
     RUNNING,
     PAUSED,
-    GAME_OVER
 }
 
 data class PlayerAction(val id: String, val movement: ShipMovement)
