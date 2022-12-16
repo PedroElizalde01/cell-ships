@@ -9,7 +9,7 @@ import model.gun.DoubleGun
 import model.gun.Gun
 import model.maths.Position
 import model.maths.Vector
-import model.mover.Movable
+import model.Movable
 import model.powerUp.PowerUp
 import model.powerUp.PowerUpType
 

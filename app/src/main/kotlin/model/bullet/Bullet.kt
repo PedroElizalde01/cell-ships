@@ -4,7 +4,7 @@ import edu.austral.ingsis.starships.ui.ImageRef
 import model.asteroid.Asteroid
 import model.maths.Position
 import model.maths.Vector
-import model.mover.Movable
+import model.Movable
 
 data class Bullet(
     val id: String,
