@@ -4,7 +4,7 @@ import edu.austral.ingsis.starships.ui.ImageRef
 import model.bullet.Bullet
 import model.maths.Position
 import model.maths.Vector
-import model.mover.Movable
+import model.Movable
 import model.starship.Starship
 
 data class Asteroid (

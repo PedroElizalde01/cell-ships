@@ -13,7 +13,7 @@ import model.ShipMovement
 import model.States
 import model.asteroid.Asteroid
 import model.bullet.Bullet
-import model.mover.Movable
+import model.Movable
 import model.powerUp.PowerUp
 import model.starship.Starship
 

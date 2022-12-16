@@ -23,7 +23,7 @@ import model.asteroid.Asteroid
 import model.gun.ClassicGun
 import model.maths.Position
 import model.maths.Vector
-import model.mover.Movable
+import model.Movable
 import model.powerUp.PowerUp
 import model.powerUp.PowerUpType
 import model.starship.Starship

@@ -1,13 +1,12 @@
 package model
 
 import javafx.scene.input.KeyCode
-import model.mover.Movable
 
 data class Game (
-    val state: States,
-    val movables :List<Movable>,
-    val movementKeyMap : Map<KeyCode,PlayerAction>,
-    val releaseKeyMap : Map<KeyCode,ReleaseAction>)
+        val state: States,
+        val movables :List<Movable>,
+        val movementKeyMap : Map<KeyCode,PlayerAction>,
+        val releaseKeyMap : Map<KeyCode,ReleaseAction>)
 
 enum class States{
     RUNNING,

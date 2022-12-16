@@ -1,4 +1,4 @@
-package model.mover
+package model
 
 interface Movable {
     fun id(): String

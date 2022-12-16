@@ -3,8 +3,7 @@ package model.powerUp
 import edu.austral.ingsis.starships.ui.ImageRef
 import model.maths.Position
 import model.maths.Vector
-import model.mover.Movable
-import model.starship.Starship
+import model.Movable
 
 data class PowerUp (
     val id : String,
